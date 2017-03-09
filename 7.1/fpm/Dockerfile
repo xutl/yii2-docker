@@ -7,6 +7,9 @@ RUN apt-get update \
             libjpeg62-turbo-dev \
             libpng12-dev \
             libfreetype6-dev \
+            # Required by composer
+            git \
+            zlib1g-dev \
         --no-install-recommends \
 
     # Required extension
@@ -19,6 +22,13 @@ RUN apt-get update \
     && docker-php-ext-install -j$(nproc) gd \
     && pecl install apcu-5.1.8 && docker-php-ext-enable apcu \
 
+    # Required by composer
+    && docker-php-ext-install -j$(nproc) zip \
+
     # Cleanup to keep the images size small
     && apt-get autoremove -y \
     && rm -r /var/lib/apt/lists/*
+
+# Install composer
+COPY install-composer /install-composer
+RUN /install-composer && rm /install-composer
