@@ -17,7 +17,7 @@ before_script:
   - image="${image//'/'/-}"
 
 script:
-  - travis_retry docker build -t "$image" "${VARIANT:-.}"
+  - docker-compose build --pull
   # TODO: Write actual test script that runs Yii requirement
   # checker for each image, e.g.:
   # - tests/run.sh "$image" "$VARIANT"
