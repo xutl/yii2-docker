@@ -3,15 +3,16 @@ variables:
 
 before_script:
   - export COMPOSE_PROJECT_NAME=${ISOLATION}${CI_BUILD_NAME}
+  - cd tests
 
 after_script:
   - export COMPOSE_PROJECT_NAME=${ISOLATION}${CI_BUILD_NAME}
+  - cd tests
   - docker-compose down -v
 
 .build: &build
   stage: build
   script:
-    - cd tests
     - sh run.sh
 
 php-5.6-apache:
