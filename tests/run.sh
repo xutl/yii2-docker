@@ -12,7 +12,7 @@ else
     image=php-${VERSION}-${VARIANT}
 fi
 
-echo ${image}
+echo "Building & testing: ${image}"
 
 docker-compose build --pull ${image}
 

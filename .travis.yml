@@ -12,7 +12,7 @@ env:
 install: true
 
 before_script:
-  - cd "$VERSION"
+  #- cd "$VERSION"
   - image="yii2-php:${VERSION}${VARIANT:+-$VARIANT}"
   - image="${image//'/'/-}"
 
