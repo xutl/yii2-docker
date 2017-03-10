@@ -1,12 +1,13 @@
 variables:
-  ISOLATION: "buildpipeline${CI_PIPELINE_ID}"
+  COMPOSE_ISOLATION: "buildpipeline${CI_PIPELINE_ID}"
 
 before_script:
-  - export COMPOSE_PROJECT_NAME=${ISOLATION}${CI_BUILD_NAME}
+  - export COMPOSE_PROJECT_NAME=${COMPOSE_ISOLATION}${CI_BUILD_NAME}
+  - export COMPOSE_NETWORK_TUPLE_C=$(expr ${CI_BUILD_ID} % 99)
   - cd tests
 
 after_script:
-  - export COMPOSE_PROJECT_NAME=${ISOLATION}${CI_BUILD_NAME}
+  - export COMPOSE_PROJECT_NAME=${COMPOSE_ISOLATION}${CI_BUILD_NAME}
   - cd tests
   - docker-compose down -v
 

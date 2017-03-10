@@ -55,3 +55,11 @@ services:
     extends:
       service: php-build
       file: docker-compose.base.yml
+
+# prevent overlapping/duplicated networks, since docker assigns /16 subnets by default ranging from 10.x over 172.x to 192.168.x
+networks:
+  default:
+    ipam:
+      driver: default
+      config:
+        - subnet: 10.100.1${COMPOSE_NETWORK_TUPLE_C}.1/24
