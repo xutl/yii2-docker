@@ -5,7 +5,7 @@ set -v
 
 COMPOSE_FILE=./docker-compose.yml
 
-if [[ -n ${CI_BUILD_NAME} ]]
+if [ -n ${CI_BUILD_NAME} ]
 then
     image=${CI_BUILD_NAME}
 else
