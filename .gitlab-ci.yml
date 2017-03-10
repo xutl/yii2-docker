@@ -26,6 +26,12 @@ php-5.6-fpm:
     VERSION: "5.6"
   <<: *build
 
+php-5.6-fpm-alpine:
+  variables:
+    VARIANT: "fpm-alpine"
+    VERSION: "5.6"
+  <<: *build
+
 php-7.0-apache:
   variables:
     VARIANT: "apache"
@@ -38,6 +44,12 @@ php-7.0-fpm:
     VERSION: "7.0"
   <<: *build
 
+php-7.0-fpm-alpine:
+  variables:
+    VARIANT: "fpm-alpine"
+    VERSION: "7.0"
+  <<: *build
+
 php-7.1-apache:
   variables:
     VARIANT: "apache"
@@ -47,5 +59,11 @@ php-7.1-apache:
 php-7.1-fpm:
   variables:
     VARIANT: "fpm"
+    VERSION: "7.1"
+  <<: *build
+
+php-7.1-fpm-alpine:
+  variables:
+    VARIANT: "fpm-alpine"
     VERSION: "7.1"
   <<: *build

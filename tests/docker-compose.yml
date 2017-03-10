@@ -14,6 +14,12 @@ services:
       service: php-build
       file: docker-compose.base.yml
 
+  php-5.6-fpm-alpine:
+    build: ../5.6/fpm-alpine
+    extends:
+      service: php-build
+      file: docker-compose.base.yml
+
   php-7.0-apache:
     build: ../7.0/apache
     extends:
@@ -26,6 +32,12 @@ services:
       service: php-build
       file: docker-compose.base.yml
 
+  php-7.0-fpm-alpine:
+    build: ../7.0/fpm-alpine
+    extends:
+      service: php-build
+      file: docker-compose.base.yml
+
   php-7.1-apache:
     build: ../7.1/apache
     extends:
@@ -33,6 +45,12 @@ services:
       file: docker-compose.base.yml
 
   php-7.1-fpm:
+    build: ../7.1/fpm
+    extends:
+      service: php-build
+      file: docker-compose.base.yml
+
+  php-7.1-fpm-alpine:
     build: ../7.1/fpm
     extends:
       service: php-build
