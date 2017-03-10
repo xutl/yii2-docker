@@ -17,11 +17,8 @@ before_script:
   - image="${image//'/'/-}"
 
 script:
-  - docker-compose build --pull php-${VERSION}-${VARIANT}
-  - docker-compose run --rm php-${VERSION}-${VARIANT} php /tests/requirements.php
-  # TODO: Write actual test script that runs Yii requirement
-  # checker for each image, e.g.:
-  # - tests/run.sh "$image" "$VARIANT"
+  - cd tests
+  - sh run.sh
 
 after_script:
   - docker images

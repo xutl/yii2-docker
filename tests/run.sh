@@ -1,19 +1,28 @@
 #!/usr/bin/env bash
 
+set -e
+set -v
+
 COMPOSE_FILE=./docker-compose.yml
 
-VERSION=7.1
-VARIANT=apache
+if [[ -n ${CI_BUILD_NAME} ]]
+then
+    image=${CI_BUILD_NAME}
+else
+    image=php-${VERSION}-${VARIANT}
+fi
 
-image=php-${VERSION}-${VARIANT}
+echo ${image}
 
 docker-compose build --pull ${image}
 
-docker-compose run --rm ${image} \
-    composer create-project --prefer-dist yiisoft/yii2 /tests/yii2
+curl https://github.com/yiisoft/yii2/archive/master.tar.gz -o yii.tar.gz -L
+tar -xzf yii.tar.gz
 
 docker-compose run --rm ${image} \
-    php /tests/yii2/framework/requirements/requirements.php
+    php /tests/requirements.php
 
-docker-compose run --rm ${image} -w /tests/yii2 \
+docker-compose run --rm -w /tests/yii2-master ${image} \
+    composer install
+docker-compose run --rm -w /tests/yii2-master ${image} \
     vendor/bin/phpunit -v --exclude caching,db,data --log-junit tests/_junit/test.xml

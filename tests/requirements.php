@@ -11,7 +11,7 @@
  */
 
 // you may need to adjust this path to the correct Yii framework path
-$frameworkPath = dirname(__FILE__) . '/';
+$frameworkPath = dirname(__FILE__) . '/yii2-master/framework';
 
 if (!is_dir($frameworkPath)) {
     echo '<h1>Error</h1>';
