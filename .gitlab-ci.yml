@@ -15,19 +15,37 @@ after_script:
     - sh run.sh
 
 php-5.6-apache:
+  variables:
+    - VARIANT=apache
+    - VERSION=5.6
   <<: *build
 
 php-5.6-fpm:
+  variables:
+    - VARIANT=fpm
+    - VERSION=5.6
   <<: *build
 
 php-7.0-apache:
+  variables:
+    - VARIANT=apache
+    - VERSION=7.0
   <<: *build
 
 php-7.0-fpm:
+  variables:
+    - VARIANT=fpm
+    - VERSION=7.0
   <<: *build
 
 php-7.1-apache:
+  variables:
+    - VARIANT=apache
+    - VERSION=7.1
   <<: *build
 
 php-7.1-fpm:
+  variables:
+    - VARIANT=fpm
+    - VERSION=7.1
   <<: *build
