@@ -19,7 +19,7 @@ RUN apk add --update --no-cache --virtual .build-deps \
         gcc \
         g++ \
         make \
-    && pecl install apc \
+    && pecl install apcu-4.0.11 \
     && docker-php-ext-configure \
         gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
     && docker-php-ext-install \
