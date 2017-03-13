@@ -33,3 +33,29 @@ RUN apk add --update --no-cache --virtual .build-deps \
         zip \
     # Cleanup to keep the images size small
     && apk del .build-deps
+
+
+# Installation of system packages for -common
+
+RUN apk add --no-cache \
+        # Required by composer
+        git \
+        zlib-dev \
+        # Required by PDO
+        postgresql \
+        mysql-client
+
+# Install composer
+COPY install-composer /install-composer
+RUN /install-composer && rm /install-composer
+
+RUN apk add --update --no-cache --virtual .build-deps \
+        # Build dependencies (will be removed after extensions are built)
+        postgresql-dev \
+    && docker-php-ext-install \
+        # Required by PDO
+        pdo_mysql \
+        pdo_pgsql\
+    # Cleanup to keep the images size small
+    && apk del .build-deps
+
