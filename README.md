@@ -7,7 +7,7 @@
 </p>
 
 This is the repo of the official [yii2](http://www.yiiframework.com/)
-[docker image](https://hub.docker.com/r/yiisoft/yii2-php/) for PHP.
+[docker image](https://hub.docker.com/_/php/) for PHP.
 
 ## Status
 
